@@ -8,7 +8,7 @@ const Box = () => {
   return (
     <mesh ref={mesh}>
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} /> //x,y,z
-      <meshStandardMaterial attach="material" />
+      <meshStandardMaterial attach="material" color="blue" />
     </mesh>
   );
 };
@@ -17,6 +17,7 @@ function App() {
   return (
     <>
       <Canvas>
+        <ambientLight intensity={0.3} />
         <Box />
       </Canvas>
     </>
