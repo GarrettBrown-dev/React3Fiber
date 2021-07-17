@@ -77,19 +77,19 @@ function App() {
             castShadow
             position={[0, 1, 0]}
             args={[3, 2, 1]}
-            color="lightblue"
+            color="skyblue"
             speed={2}
           />
           <SpinningMesh
             castShadow
             position={[-2, 1, -5]}
-            color="pink"
+            color="hotpink"
             speed={6}
           />
           <SpinningMesh
             castShadow
             position={[5, 1, -2]}
-            color="pink"
+            color="hotpink"
             speed={6}
           />
         </group>
