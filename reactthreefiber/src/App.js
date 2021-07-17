@@ -1,14 +1,22 @@
 import "./App.scss";
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
+import { softShadows, MeshWobbleMaterial } from "@react-three/drei";
+
+softShadows();
 
 const SpinningMesh = ({ position, args, color }) => {
   const mesh = useRef(null);
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
   return (
-    <mesh castShadow={[true]} position={position} ref={mesh}>
+    <mesh castShadow position={position} ref={mesh}>
       <boxBufferGeometry attach="geometry" args={args} />
-      <meshStandardMaterial attach="material" color={color} />
+      <MeshWobbleMaterial
+        attach="material"
+        color={color}
+        speed={1}
+        factor={0.6}
+      />
     </mesh>
   );
 };
@@ -17,7 +25,7 @@ function App() {
   return (
     <>
       <Canvas
-        shadowMap
+        shadows
         colorManagement
         camera={{ position: [-5, 2, 10], fov: 60 }}
       >
@@ -39,18 +47,18 @@ function App() {
 
         <group>
           <mesh
+            recieveShadow
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -3, 0]}
-            recieveShadow
           >
             <planeBufferGeometry attach="geometry" args={[100, 100]} />
-            <shadowMaterial attach="material" />
+            <shadowMaterial attach="material" opacity={0.3} />
           </mesh>
         </group>
 
-        <SpinningMesh position={[0, 1, 0]} args={[3, 2, 1]} color="skyblue" />
-        <SpinningMesh position={[-2, 1, -5]} color="purple" />
-        <SpinningMesh position={[5, 1, -2]} color="purple" />
+        <SpinningMesh position={[0, 1, 0]} args={[3, 2, 1]} color="lightblue" />
+        <SpinningMesh position={[-2, 1, -5]} color="pink" />
+        <SpinningMesh position={[5, 1, -2]} color="pink" />
       </Canvas>
     </>
   );
